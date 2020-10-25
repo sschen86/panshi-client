@@ -1,12 +1,13 @@
 {
-  "name": "noapi-client",
-  "version": "0.1.0",
+  "name": "panshi-client",
+  "version": "0.0.1",
   "author": "sschen86@163.com",
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "npm run test && npm run build && npm version patch && npm publish --access=public",
   },
   "dependencies": {
     "@shushu.pro/adapter": "^0.0.4",
@@ -42,5 +43,13 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
+  ],
+  "repository": "https://github.com/sschen86/panshi-client.git",
+  "files": [
+    "dist/",
+    "index.js",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ]
 }
