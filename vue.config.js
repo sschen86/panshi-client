@@ -9,7 +9,7 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports = {
 
-  // publicPath: '',
+  publicPath: '/panshi/',
   lintOnSave: false,
   productionSourceMap: false,
   devServer: {

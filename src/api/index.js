@@ -6,7 +6,7 @@ import { message } from 'ant-design-vue'
 
 vue.prototype.$api = easyapi({
   env: 'development',
-  baseURL: '/openapi/',
+  baseURL: '/panshi/openapi/',
   configs: {
     login: {
       method: 'post',
@@ -197,7 +197,7 @@ vue.prototype.$api = easyapi({
 })
 
 vue.prototype.$mockapi = easyapi({
-  baseURL: '/mockapi/',
+  baseURL: '/panshi/mockapi/',
   configs: {
     send: {
       url: '',

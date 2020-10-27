@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: '/panshi/' || process.env.BASE_URL,
   routes: [
     {
       path: '',
