@@ -15,18 +15,18 @@ module.exports = {
   devServer: {
     port: 80,
     proxy: {
-      '^/openapi/': {
+      '^/panshi/openapi/': {
         target: 'http://localhost:666/', // 开发环境
         changeOrigin: true,
         pathRewrite: {
-          '^/openapi/': '/openapi/',
+          '^/panshi/openapi/': '/openapi/',
         },
       },
-      '^/mockapi/': {
+      '^/panshi/mockapi/': {
         target: 'http://localhost:666/', // 开发环境
         changeOrigin: true,
         pathRewrite: {
-          '^/mockapi/': '/mockapi/',
+          '^/panshi/mockapi/': '/mockapi/',
         },
       },
     },

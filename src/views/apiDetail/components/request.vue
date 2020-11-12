@@ -144,7 +144,27 @@ export default {
   },
   watch: {
     apiData () {
-      this.requestData.dataSource = this.apiData.mockReqDoc
+      this.requestData.dataSource = this.transformData(this.apiData.mockReqDoc)
+    },
+  },
+
+  methods: {
+    transformData (data, parentKey = '') {
+      const newData = this.$adapter({
+        key: [ (key) => `${parentKey}-${key}`, 'name' ],
+        types: [
+          { $value: (value) => value.filter(item => item !== 'null') },
+          { $key: 'required', $value: (value) => value.includes('null') ? '否' : '是' },
+        ],
+        flag: true,
+        $increase: { defaultValue: () => '-' },
+        description: true,
+        children: (value, { row }) => this.transformData(value, `${parentKey}-${row.key}`),
+      }, data)
+
+      //  console.info(newData)
+
+      return newData
     },
   },
 }
@@ -152,18 +172,18 @@ export default {
 
 <style lang="less">
 .detail-request {
-    .state-remove {
-        text-decoration: line-through;
-        color: red;
-    }
-    .state-add {
-        color: green;
-    }
-    .state-warn {
-        color: tomato;
-    }
-    .state-question {
-        color: violet;
-    }
+  .state-remove {
+    text-decoration: line-through;
+    color: red;
+  }
+  .state-add {
+    color: green;
+  }
+  .state-warn {
+    color: tomato;
+  }
+  .state-question {
+    color: violet;
+  }
 }
 </style>

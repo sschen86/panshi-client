@@ -140,19 +140,31 @@ export default {
 
   render () {
     return (
-      <a-form class="common-form" form={this.form} >
+      <a-form class="common-form" form={this.form} onSubmit={(e) => { e.preventDefault(); this.option.onSubmit && this.option.onSubmit(e) }}>
         {
           this.renderFields.map((item) => {
             let content
 
 
             if (item.type === 'input') {
-              content = (<a-input maxLength={item.maxlength ? item.maxlength : undefined} v-decorator={item.decorator} disabled={typeof item.disabled === 'function' ? item.disabled() : item.disabled} />)
+              content = (<a-input
+                maxLength={item.maxlength ? item.maxlength : undefined}
+                v-decorator={item.decorator}
+                disabled={typeof item.disabled === 'function' ? item.disabled() : item.disabled}
+              />)
             } else if (item.type === 'radio') {
-              content = (<a-radio-group v-decorator={item.decorator} disabled={typeof item.disabled === 'function' ? item.disabled() : item.disabled} options={item.options} />)
+              content = (<a-radio-group
+                v-decorator={item.decorator}
+                disabled={typeof item.disabled === 'function' ? item.disabled() : item.disabled}
+                options={item.options}
+              />)
             } else if (item.type === 'checkbox') {
               // eslint-disable-next-line max-len
-              content = (<a-checkbox-group v-decorator={item.decorator}disabled={typeof item.disabled === 'function' ? item.disabled() : item.disabled} options={item.options} />)
+              content = (<a-checkbox-group
+                v-decorator={item.decorator}
+                disabled={typeof item.disabled === 'function' ? item.disabled() : item.disabled}
+                options={item.options} />
+              )
             } else if (item.type === 'custom') {
               content = item.customRender(item.decorator[1].initialValue, item)
             } else if (item.type === 'value') {

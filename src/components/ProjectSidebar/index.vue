@@ -76,6 +76,9 @@ export default {
                 ],
               } ],
             ],
+            onSubmit: (e) => {
+              this.projectAddCategoryDialog.submit()
+            },
           },
         },
         onOpen: ({ data }, parentId) => {
@@ -572,7 +575,7 @@ export default {
         content: '删除分类不会删除存在的接口',
         onOk: () => {
           return this.$api.deleteCategory({ projectId: this.projectId, id }).then(() => {
-            this.getProjectCategorys()
+            return this.getProjectCategorys()
           })
         },
         onCancel () {},
@@ -584,7 +587,7 @@ export default {
         content: '注意：删除后不可恢复！',
         onOk: () => {
           return this.$api.deleteApi({ id }).then(() => {
-            this.getProjectApis()
+            return this.getProjectApis()
           })
         },
         onCancel () {},
